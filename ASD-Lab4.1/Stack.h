@@ -14,10 +14,9 @@ public:
 
 	void push(T element)
 	{
-		if (current_size >= max_size)
+		if (current_size == max_size)
 		{
-			std::cout << "Warning: Can't add an element: stack is overflow\n";
-			return;
+			throw std::exception("Warning: Can't add an element - stack is overflown");
 		}
 
 		array[current_size] = element;
@@ -28,8 +27,7 @@ public:
 	{
 		if (empty())
 		{
-			std::cout << "Warning: Can't pop an element: stack is empty\n";
-			throw std::exception();
+			throw std::exception("Warning: Can't pop an element - stack is empty");
 		}
 
 		current_size--;
@@ -40,8 +38,7 @@ public:
 	{
 		if (empty())
 		{
-			std::cout << "Warning: Can't get a top element: stack is empty\n";
-			return;
+			throw std::exception("Warning: Can't get a top element - stack is empty");
 		}
 
 		return array[current_size - 1];
@@ -57,24 +54,26 @@ public:
 		return current_size;
 	}
 
+	void print(void (*print_element)(T element))
+	{
+		Stack stack = *this;
+
+		if (stack.empty())
+		{
+			std::cout << "Stack is empty\n";
+			return;
+		}
+
+		std::cout << "Stack of size " << stack.size() << ":\n\n";
+		do
+		{
+			print_element(stack.pop());
+			std::cout << "\n";
+		} while (!stack.empty());
+	}
+
 private:
 	unsigned int max_size;
 	T* array;
 	unsigned int current_size;
 };
-
-template<typename T>
-void PrintStack(Stack<T> stack, void (*print_element)(T element))
-{
-	if (stack.empty())
-	{
-		std::cout << "Stack is empty\n";
-		return;
-	}
-	std::cout << "Stack of size " << stack.size() << ":\n\n";
-	do
-	{
-		print_element(stack.pop());
-		std::cout << "\n";
-	} while (!stack.empty());
-}
