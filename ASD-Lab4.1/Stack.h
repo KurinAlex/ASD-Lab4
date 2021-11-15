@@ -16,7 +16,8 @@ public:
 	{
 		if (current_size == max_size)
 		{
-			throw std::exception("Warning: Can't add an element - stack is overflown");
+			std::cout << "Warning: Can't add an element - stack is overflown\n";
+			return;
 		}
 
 		array[current_size] = element;
@@ -54,10 +55,8 @@ public:
 		return current_size;
 	}
 
-	void print(void (*print_element)(T element))
+	static void print(Stack stack, void (*print_element)(T element))
 	{
-		Stack stack = *this;
-
 		if (stack.empty())
 		{
 			std::cout << "Stack is empty\n";
