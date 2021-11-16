@@ -48,7 +48,7 @@ int main()
 	queue.push(message2);
 	PrintQueue(queue);
 
-	std::cout << "\nPoped size more messages:\n\n";
+	std::cout << "\nPoped six more messages:\n\n";
 	for (int i = 0; i < 6; i++)
 	{
 		try
