@@ -5,7 +5,6 @@ std::string texts[] = { "Hello", "Hi", "How are you?", "Wow", "Incredible", "Wha
 
 Message GenerateMessage()
 {
-	unsigned int seed = rand() % 10;
 	return { texts[rand() % 10],(unsigned int)rand() % 20 + 1,(unsigned int)rand() % 5 + 1 };
 }
 
